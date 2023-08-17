@@ -1,0 +1,13 @@
+.asteroidsList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 767px) {
+  .asteroidsList {
+    margin-bottom: 100px;
+  }
+}
