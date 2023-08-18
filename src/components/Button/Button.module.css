@@ -21,6 +21,7 @@
 }
 
 .btn:disabled {
+	cursor: default;
 	background-color: var(--disabled);
 	color: var(--gray-30);
 }
