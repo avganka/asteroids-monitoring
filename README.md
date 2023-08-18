@@ -1,34 +1,70 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Asteroids Monitoring Service
+## Описание проекта
+Этот обучающий проект представляет из себя онлайн-сервис для мониторинга опасных астероидов на основе данных API NASA. На главной странице представлен список подлетов астероидов к Земле.
 
-## Getting Started
+## Основные функции
 
-First, run the development server:
+- Список подлетов астероидов к Земле с подгрузкой при скролле
+- Детальная информация по каждому астероиду
+- Адаптивная верстка
+- Возможность заказать уничтожения астероида))
+- Страница успешного заказа
+- Индивидуальная страница для каждого астероида с детальной информацией
+
+## Технологии
+
+- Next.js
+- TypeScript (рекомендуется)
+- CSS модули
+- Axios
+- date-fns
+- Jest и React Testing Library (для тестирования)
+- Проект был разработан с учетом последних версий браузеров (Chrome, Firefox, Safari, Edge)
+
+## Как запустить проект
+
+1. Клонируйте репозиторий:
+
+```bash
+git clone https://github.com/avganka/asteroids-monitoring.git
+```
+
+2. Перейдите в директорию проекта:
+
+```bash
+cd asteroids-monitoring
+```
+
+3. Установите зависимости:
+
+```bash
+npm install
+```
+
+4. Запустите проект в режиме разработки:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. Для сборки проекта:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+6. Для запуска проекта в продакшн:
 
-## Learn More
+```bash
+npm run start
+```
 
-To learn more about Next.js, take a look at the following resources:
+7. Для запуска тестов:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run test
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Дополнительно
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[Дизайн проекта в Figma](https://www.figma.com/file/N9aUcWK3o189lZcwQyzU79/Armaggedon-V3?type=design&node-id=0%3A1&mode=design&t=nb1Hyl3qNhdm2c4a-1)
