@@ -6,12 +6,12 @@ export interface NasaApiResponse {
 
 export interface PaginationLinks {
   next: string;
-  prev: string;
+  previous?: string;
   self: string;
 }
 
 export interface NearEarthObject {
-  links: {self: string};
+  links: PaginationLinks;
   id: string;
   neo_reference_id: string;
   name: string;
@@ -22,7 +22,6 @@ export interface NearEarthObject {
   close_approach_data: CloseApproachData[];
   is_sentry_object: boolean;
 }
-
 export interface EstimatedDiameter {
   kilometers: DiameterRange;
   meters: DiameterRange;

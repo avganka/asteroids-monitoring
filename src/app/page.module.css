@@ -1,9 +1,9 @@
 .main {
   position: relative;
+  padding-bottom: 40px;
 }
 
 .mainContent {
-  overflow-y: auto;
   max-width: 450px;
   margin: 0 auto;
   padding: 0 20px;

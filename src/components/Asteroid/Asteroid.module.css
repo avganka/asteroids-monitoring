@@ -63,6 +63,10 @@
 	color: var(--white-base);
 }
 
+.inCart {
+	color: var(--white-base);
+}
+
 .dangerIcon {
 	width: 20px;
 	height: 20px;
