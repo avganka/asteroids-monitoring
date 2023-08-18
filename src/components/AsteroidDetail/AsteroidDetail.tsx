@@ -1,15 +1,23 @@
 'use client';
 import styles from './AsteroidDetail.module.css';
 import {DistanceContext} from '@/context/DistanceContext';
-import {NearEarthObject} from '@/types';
+import {CloseApproachData, NearEarthObject} from '@/types';
 import {formatDistance, sortApproaches} from '@/utils';
 import {format} from 'date-fns';
 import ru from 'date-fns/locale/ru';
-import React, {useContext} from 'react';
+import React, {useCallback, useContext} from 'react';
 
 function AsteroidDetail({asteroid}: {asteroid: NearEarthObject}) {
   const units = useContext(DistanceContext);
-  const sortedApproaches = sortApproaches(asteroid.close_approach_data);
+
+  const sortedApproaches = asteroid.close_approach_data.sort((a, b) => {
+    const dateA = new Date(a.close_approach_date_full);
+    const dateB = new Date(b.close_approach_date_full);
+
+    if (dateA < dateB) return 1;
+    if (dateA > dateB) return -1;
+    return 0;
+  });
 
   return (
     <ul className={styles.approachesList}>

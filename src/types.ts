@@ -5,7 +5,7 @@ export interface NasaApiResponse {
 }
 
 export interface PaginationLinks {
-  next: string;
+  next?: string;
   previous?: string;
   self: string;
 }
