@@ -8,7 +8,7 @@
   --gray-30: hsl(180, 4%, 89%);
 
   --font-family: Helvetica, sans-serif;
-
+  --disabled: hsl(0, 0%, 28%);
   /*--header-height: 126px;*/
 }
 

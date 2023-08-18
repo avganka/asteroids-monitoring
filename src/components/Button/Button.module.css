@@ -1,0 +1,26 @@
+.btn {
+	cursor: pointer;
+	color: var(--orange-base);
+	border: none;
+	border-radius: 16px;
+	background: var(--orange-smooth);
+	font-family: var(--font-family);
+	font-size: 11px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 20px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	padding: 2px 11px;
+	transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.btn:hover {
+	background-color: var(--orange-base);
+	color: var(--white-base);
+}
+
+.btn:disabled {
+	background-color: var(--disabled);
+	color: var(--gray-30);
+}
