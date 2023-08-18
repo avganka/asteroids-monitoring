@@ -10,6 +10,7 @@ import {format} from 'date-fns';
 import ru from 'date-fns/locale/ru';
 import {useContext, useState} from 'react';
 import {CartContext, CartDispatchContext} from '@/context/CartContext';
+import { DistanceContext } from '@/context/DistanceContext';
 
 const SMALL_OR_BIG_LIMIT = 100;
 
@@ -17,6 +18,7 @@ function Asteroid({asteroid}: {asteroid: NearEarthObject}) {
   const [isInCart, setInCart] = useState(false);
   const dispatch = useContext(CartDispatchContext);
   const cart = useContext(CartContext);
+  const units = useContext(DistanceContext);
 
   const findClosestApproachInTheFuture = (approaches: CloseApproachData[]) => {
     const today = new Date().toISOString().split('T')[0];
@@ -53,7 +55,7 @@ function Asteroid({asteroid}: {asteroid: NearEarthObject}) {
         </p>
         <div className={styles.asteroidInfo}>
           <p className={styles.asteroidDistance}>
-            {true === true
+            {units === 'kilometers'
               ? `${formatDistance(closestApproach.miss_distance.kilometers)} км`
               : `${formatDistance(closestApproach.miss_distance.lunar)} л.о.`}
           </p>

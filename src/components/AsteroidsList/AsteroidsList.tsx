@@ -5,7 +5,7 @@ import {getData, getNextDate} from '@/utils';
 import LoadMore from '../LoadMore/LoadMore';
 
 async function AsteroidsList() {
-  //const [activeDistance, setACtiveDistance] = useState<'kilometers' | 'lunar'>('kilometers');
+ 
   const data = await getData<NasaApiResponse>(getNextDate());
 
   if (!data) {
