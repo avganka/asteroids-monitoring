@@ -1,11 +1,14 @@
 import Image from 'next/image';
 import styles from './Header.module.css';
 import logo from '../../../public/logo.svg';
+import Link from 'next/link';
 
 function Header() {
-	return (
+  return (
     <header className={styles.header}>
-      <Image className={styles.logo} src={logo} alt={'Armageddon 2023'} />
+      <Link href={'/'}>
+        <Image className={styles.logo} src={logo} alt={'Armageddon 2023'} />
+      </Link>
       <p className={styles.desription}>
         ООО “Команда им. Б. Уиллиса”.
         <br />
@@ -15,4 +18,4 @@ function Header() {
   );
 }
 
-export default Header
+export default Header;
