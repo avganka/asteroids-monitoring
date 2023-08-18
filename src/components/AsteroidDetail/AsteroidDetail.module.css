@@ -1,0 +1,27 @@
+.asteroidTitle {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 36px;
+  margin-bottom: 8px;
+}
+
+.approach {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.approachesList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.asteroidValue {
+  font-weight: 700;
+  margin-left: 10px;
+  text-align: right;
+  text-decoration: underline;
+}
