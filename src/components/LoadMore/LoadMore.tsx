@@ -5,20 +5,18 @@ import styles from './LoadMore.module.css';
 import {useEffect, useState} from 'react';
 import {NasaApiResponse, NearEarthObject} from '@/types';
 import Asteroid from '../Asteroid/Asteroid';
-import {getData, getNextDate} from '@/utils';
+import {getNextDate} from '@/utils';
+import {fetchAsteroidsList} from '@/api';
 
 function LoadMore() {
   const [asteroids, setAsteroid] = useState<NearEarthObject[]>([]);
   const {ref, inView} = useInView();
-  const [startDate, setStartDate] = useState(getNextDate(new Date(), 2));
+  const [startDate, setStartDate] = useState(getNextDate(new Date(), 3));
 
   const loadMoreAsteroids = async () => {
-    const data = await getData<NasaApiResponse>(startDate);
+    const data = await fetchAsteroidsList<NasaApiResponse>(startDate);
     if (data) {
-      setAsteroid((prev) => [
-				...prev,
-				...Object.values(data.near_earth_objects).flat().reverse(),
-      ]);
+      setAsteroid((prev) => [...prev, ...Object.values(data.near_earth_objects).flat()]);
       setStartDate((prev) => getNextDate(prev, 2));
     }
   };

@@ -1,3 +1,24 @@
+.asteroid {
+	padding: 5px;
+	border-radius: 10px;
+		transition: background-color 0.2s ease-in-out;
+}
+
+.asteroidLink {
+	cursor: pointer;
+	
+}
+
+.asteroidLink:hover{
+	color: var(--orange-base);
+}
+
+.asteroid:hover {
+	background: radial-gradient(circle farthest-corner at left center,
+			#3a3a3a,
+			transparent);
+}
+
 .asteroidDate {
 	font-size: 24px;
 	font-style: normal;

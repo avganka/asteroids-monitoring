@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import styles from './Asteroid.module.css';
 import {CloseApproachData, NearEarthObject} from '@/types';
-import {formatDistance} from '@/utils';
+import {formatAsteroidName, formatDistance} from '@/utils';
 import bigAsteroid from '../../../public/big-asteroid.png';
 import smallAsteroid from '../../../public/small-asteroid.png';
 import dangerIcon from '../../../public/danger.svg';
@@ -10,11 +10,18 @@ import {format} from 'date-fns';
 import ru from 'date-fns/locale/ru';
 import {useContext, useState} from 'react';
 import {CartContext, CartDispatchContext} from '@/context/CartContext';
-import { DistanceContext } from '@/context/DistanceContext';
+import {DistanceContext} from '@/context/DistanceContext';
+import Link from 'next/link';
+import Button from '../Button/Button';
+
+interface AsteroidProps {
+  asteroid: NearEarthObject;
+  hideOrderBtn?: boolean;
+}
 
 const SMALL_OR_BIG_LIMIT = 100;
 
-function Asteroid({asteroid}: {asteroid: NearEarthObject}) {
+function Asteroid({asteroid, hideOrderBtn = false}: AsteroidProps) {
   const [isInCart, setInCart] = useState(false);
   const dispatch = useContext(CartDispatchContext);
   const cart = useContext(CartContext);
@@ -46,13 +53,15 @@ function Asteroid({asteroid}: {asteroid: NearEarthObject}) {
   const closestApproach = findClosestApproachInTheFuture(asteroid.close_approach_data);
 
   return (
-    <li key={asteroid.id} className={styles.asteroidsItem}>
-      <article>
-        <p className={styles.asteroidDate}>
-          {format(new Date(closestApproach.close_approach_date_full), 'dd MMMM yyyy', {
-            locale: ru,
-          })}
-        </p>
+    <li className={styles.asteroidsItem}>
+      <article className={styles.asteroid}>
+        <Link className={styles.asteroidLink} href={`/${asteroid.id}`}>
+          <p className={styles.asteroidDate}>
+            {format(new Date(closestApproach.close_approach_date_full), 'dd MMMM yyyy', {
+              locale: ru,
+            })}
+          </p>
+        </Link>
         <div className={styles.asteroidInfo}>
           <p className={styles.asteroidDistance}>
             {units === 'kilometers'
@@ -76,26 +85,19 @@ function Asteroid({asteroid}: {asteroid: NearEarthObject}) {
           )}
 
           <div>
-            <h2 className={styles.asteroidName}>
-              {asteroid.name.match(/\(([^)]+)\)/g)![0].slice(1, -1)}
-            </h2>
+            <h2 className={styles.asteroidName}>{formatAsteroidName(asteroid.name)}</h2>
             <span>Ø {Math.round(asteroid.estimated_diameter.meters.estimated_diameter_max)} м</span>
           </div>
         </div>
         <div className={styles.btns}>
-          {isInCart ? (
-            <button
-              className={`${styles.asteroidBtn} ${styles.inCart}`}
-              onClick={onOrderAsteroidClick}
-            >
-              В корзине
-            </button>
-          ) : (
-            <button className={styles.asteroidBtn} onClick={onOrderAsteroidClick}>
-              Заказать
-            </button>
-          )}
-
+          {!hideOrderBtn &&
+            (isInCart ? (
+              <Button className={styles.inCart} onClick={onOrderAsteroidClick}>
+                В корзине
+              </Button>
+            ) : (
+              <Button onClick={onOrderAsteroidClick}>Заказать</Button>
+            ))}
           {asteroid.is_potentially_hazardous_asteroid && (
             <div className={styles.danger}>
               <Image

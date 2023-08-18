@@ -2,7 +2,9 @@ import Header from '@/components/Header/Header';
 import './globals.css';
 import type {Metadata} from 'next';
 import PlanetDecoration from '@/components/PlanetDecoration/PlanetDecoration';
-import { PropsWithChildren } from 'react';
+import {PropsWithChildren} from 'react';
+import {DistanceProvider} from '@/context/DistanceContext';
+import {CartProvider} from '@/context/CartContext';
 
 export const metadata: Metadata = {
   title: 'Asteroids',
@@ -13,9 +15,13 @@ function RootLayout({children}: PropsWithChildren) {
   return (
     <html lang='ru'>
       <body>
-        <Header />
-        <PlanetDecoration />
-        <main className='container'>{children}</main>
+        <DistanceProvider>
+          <CartProvider>
+            <Header />
+            <PlanetDecoration />
+            <main className='container'>{children}</main>
+          </CartProvider>
+        </DistanceProvider>
       </body>
     </html>
   );

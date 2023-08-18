@@ -1,29 +1,32 @@
 import styles from './AsteroidsList.module.css';
-import {NasaApiResponse} from '@/types';
+import {NasaApiResponse, NearEarthObject} from '@/types';
 import Asteroid from '../Asteroid/Asteroid';
-import {getData, getNextDate} from '@/utils';
-import LoadMore from '../LoadMore/LoadMore';
+import {getNextDate} from '@/utils';
+import {fetchAsteroidsList} from '@/api';
+import {ReactNode} from 'react';
 
-async function AsteroidsList() {
- 
-  const data = await getData<NasaApiResponse>(getNextDate());
+interface AsteroidListProps {
+  asteroids?: NearEarthObject[];
+  children?: ReactNode;
+  hideOrderBtn?: boolean;
+}
 
-  if (!data) {
-    return <h1>Error</h1>;
+async function AsteroidsList({asteroids, children, hideOrderBtn}: AsteroidListProps) {
+  let asteroidsList = asteroids ? asteroids : [];
+
+  if (asteroids === undefined) {
+    const data = await fetchAsteroidsList<NasaApiResponse>(getNextDate());
+
+    asteroidsList = Object.values(data!.near_earth_objects).flatMap((asteroids) => asteroids);
   }
 
   return (
     <ul className={styles.asteroidsList}>
-      {Object.values(data.near_earth_objects)
-        .flatMap((asteroids => asteroids))
-        .map((asteroid) => (
-          <Asteroid key={asteroid.id} asteroid={asteroid} />
-        ))}
-      <LoadMore />
+      {asteroidsList.map((asteroid) => (
+        <Asteroid key={asteroid.id} asteroid={asteroid} hideOrderBtn={hideOrderBtn} />
+      ))}
+      {children}
     </ul>
   );
 }
-
 export default AsteroidsList;
-
-
