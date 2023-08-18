@@ -1,12 +1,17 @@
-.mainTitle {
-  font-size: 28px;
-  font-weight: 700;
-  line-height: 36px;
-  margin-bottom: 8px;
+.planetWrapper {
+  position: fixed;
+  top: calc((100% - 141px) / 2 + 141px);
+  transform: translateY(-50%);
+  left: 0;
+  z-index: -10;
 }
 
+.planet {
+  display: block;
+  object-fit: contain;
+}
 
-/*@media (max-width: 1220px) {
+@media (max-width: 1220px) {
   .planet {
     width: 70%;
   }
@@ -26,14 +31,10 @@
   .planetWrapper {
     left: -50%;
   }
-
-  .main {
-    padding-left: 70px;
-  }
 }
 
 @media (max-width: 568px) {
   .planetWrapper {
     left: -90%;
   }
-}*/
+}

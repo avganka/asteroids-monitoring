@@ -8,6 +8,8 @@
   --gray-30: hsl(180, 4%, 89%);
 
   --font-family: Helvetica, sans-serif;
+
+  /*--header-height: 126px;*/
 }
 
 * {
@@ -31,4 +33,16 @@ a {
   text-decoration: none;
 }
 
+.container {
+  position: relative;
+  max-width: 450px;
+  margin: 0 auto;
+  padding: 0 20px;
+  padding-bottom: 40px;
+}
 
+@media (max-width: 767px) {
+  .container {
+    padding-left: 70px;
+  }
+}
