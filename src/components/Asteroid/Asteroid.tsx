@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import styles from './Asteroid.module.css';
 import {CloseApproachData, NearEarthObject} from '@/types';
-import {formatAsteroidName, formatDistance} from '@/utils';
+import {formatAsteroidName, formatDistance, formatWordDeclension} from '@/utils';
 import bigAsteroid from '../../../public/big-asteroid.png';
 import smallAsteroid from '../../../public/small-asteroid.png';
 import dangerIcon from '../../../public/danger.svg';
@@ -52,6 +52,18 @@ function Asteroid({asteroid, hideOrderBtn = false}: AsteroidProps) {
 
   const closestApproach = findClosestApproachInTheFuture(asteroid.close_approach_data);
 
+  const lunarDistanceLocale =
+    formatWordDeclension(parseInt(closestApproach.miss_distance.lunar), [
+      'лунная',
+      'лунных',
+      'лунных',
+    ]) + ' ' + 
+    formatWordDeclension(parseInt(closestApproach.miss_distance.lunar), [
+      'орбита',
+      'орбиты',
+      'орбит',
+    ]);
+
   return (
     <li className={styles.asteroidsItem}>
       <article className={styles.asteroid}>
@@ -66,7 +78,7 @@ function Asteroid({asteroid, hideOrderBtn = false}: AsteroidProps) {
           <p className={styles.asteroidDistance}>
             {units === 'kilometers'
               ? `${formatDistance(closestApproach.miss_distance.kilometers)} км`
-              : `${formatDistance(closestApproach.miss_distance.lunar)} л.о.`}
+              : `${formatDistance(closestApproach.miss_distance.lunar)} ${lunarDistanceLocale}`}
           </p>
           {asteroid.estimated_diameter.meters.estimated_diameter_max > SMALL_OR_BIG_LIMIT ? (
             <Image
