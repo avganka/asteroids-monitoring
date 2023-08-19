@@ -11,8 +11,8 @@ function AsteroidDetail({asteroid}: {asteroid: NearEarthObject}) {
   const units = useContext(DistanceContext);
 
   const sortedApproaches = asteroid.close_approach_data.sort((a, b) => {
-    const dateA = new Date(a.close_approach_date_full);
-    const dateB = new Date(b.close_approach_date_full);
+    const dateA = new Date(a.close_approach_date);
+    const dateB = new Date(b.close_approach_date);
 
     if (dateA < dateB) return 1;
     if (dateA > dateB) return -1;
@@ -25,7 +25,7 @@ function AsteroidDetail({asteroid}: {asteroid: NearEarthObject}) {
         <li key={approach.close_approach_date_full}>
           <article className={styles.approach}>
             <h2>
-              {format(new Date(approach.close_approach_date_full), 'dd MMMM yyyy', {
+              {format(new Date(approach.close_approach_date), 'dd MMMM yyyy', {
                 locale: ru,
               })}
             </h2>
