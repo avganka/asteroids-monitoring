@@ -8,10 +8,10 @@ import Button from '../Button/Button';
 
 function Cart() {
   const cartItems = useContext(CartContext);
-  const router = useRouter()
+  const router = useRouter();
 
   const clickHandler = () => {
-    router.push('/thank-you')
+    router.push('/thank-you');
   };
 
   return (

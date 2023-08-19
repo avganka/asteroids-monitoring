@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import styles from './Asteroid.module.css';
-import {CloseApproachData, NearEarthObject} from '@/types';
+import {NearEarthObject} from '@/types';
 import {formatAsteroidName, formatDistance, formatWordDeclension} from '@/utils';
 import bigAsteroid from '../../../public/big-asteroid.png';
 import smallAsteroid from '../../../public/small-asteroid.png';

@@ -11,7 +11,7 @@ import {fetchAsteroidsList} from '@/api';
 function LoadMore() {
   const [asteroids, setAsteroid] = useState<NearEarthObject[]>([]);
   const {ref, inView} = useInView();
-  const [startDate, setStartDate] = useState(getNextDate(new Date(), 3));
+  const [startDate, setStartDate] = useState(getNextDate(new Date(), 2));
 
   const loadMoreAsteroids = async () => {
     const data = await fetchAsteroidsList<NasaApiResponse>(startDate);

@@ -1,11 +1,11 @@
 'use client';
 import styles from './AsteroidDetail.module.css';
 import {DistanceContext} from '@/context/DistanceContext';
-import {CloseApproachData, NearEarthObject} from '@/types';
-import {formatDistance, sortApproaches} from '@/utils';
+import {NearEarthObject} from '@/types';
+import {formatDistance} from '@/utils';
 import {format} from 'date-fns';
 import ru from 'date-fns/locale/ru';
-import React, {useCallback, useContext} from 'react';
+import {useContext} from 'react';
 
 function AsteroidDetail({asteroid}: {asteroid: NearEarthObject}) {
   const units = useContext(DistanceContext);
