@@ -32,5 +32,6 @@ describe('formatAsteroidName', () => {
   it('should format name correctly', () => {
     expect(formatAsteroidName('(Asteroid) Name')).toBe('Asteroid');
     expect(formatAsteroidName('(Another) Name')).toBe('Another');
+    expect(formatAsteroidName('Сommon name')).toBe('Сommon name');
   });
 });

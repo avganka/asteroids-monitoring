@@ -34,7 +34,11 @@ export function getNextDate(currentDate = new Date(), daysToAdd = 1) {
 }
 
 export function formatAsteroidName(name: string) {
-  return name.match(/\(([^)]+)\)/g)![0].slice(1, -1);
+  const regexp = /\(([^)]+)\)/
+  if (regexp.test(name)) {
+    return name.match(regexp)![0].slice(1, -1);
+  }
+  return name;
 }
 
 export function sortApproaches(approaches: CloseApproachData[]) {
