@@ -57,7 +57,7 @@ function Asteroid({asteroid, hideOrderBtn = false}: AsteroidProps) {
       <article className={styles.asteroid}>
         <Link className={styles.asteroidLink} href={`/${asteroid.id}`}>
           <p className={styles.asteroidDate}>
-            {format(new Date(closestApproach.close_approach_date_full), 'dd MMMM yyyy', {
+            {format(new Date(closestApproach.close_approach_date), 'dd MMMM yyyy', {
               locale: ru,
             })}
           </p>
