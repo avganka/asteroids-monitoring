@@ -30,9 +30,6 @@ function Cart() {
       >
         Отправить
       </Button>
-      {/*<button onClick={clickHandler} disabled={cartItems.length === 0 ? true : false}>
-        Отправить
-      </button>*/}
     </div>
   );
 }
