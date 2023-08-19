@@ -27,19 +27,6 @@ function Asteroid({asteroid, hideOrderBtn = false}: AsteroidProps) {
   const cart = useContext(CartContext);
   const units = useContext(DistanceContext);
 
-  const findClosestApproachInTheFuture = (approaches: CloseApproachData[]) => {
-    const today = new Date().toISOString().split('T')[0];
-    const futureApproaches = approaches.filter((approach) => approach.close_approach_date > today);
-
-    return futureApproaches.reduce((closest, approach) => {
-      if (!closest) return approach;
-      return parseFloat(approach.miss_distance.kilometers) <
-        parseFloat(closest.miss_distance.kilometers)
-        ? approach
-        : closest;
-    }, futureApproaches[0]);
-  };
-
   const onOrderAsteroidClick = () => {
     if (cart.find((item) => item.id === asteroid.id)) {
       dispatch((prev) => [...prev.filter((item) => item.id !== asteroid.id)]);
@@ -50,15 +37,14 @@ function Asteroid({asteroid, hideOrderBtn = false}: AsteroidProps) {
     setInCart((prev) => !prev);
   };
 
-  const closestApproach = findClosestApproachInTheFuture(asteroid.close_approach_data);
-
   const lunarDistanceLocale =
-    formatWordDeclension(parseInt(closestApproach.miss_distance.lunar), [
+    formatWordDeclension(parseInt(asteroid.close_approach_data[0].miss_distance.lunar), [
       'лунная',
       'лунных',
       'лунных',
-    ]) + ' ' + 
-    formatWordDeclension(parseInt(closestApproach.miss_distance.lunar), [
+    ]) +
+    ' ' +
+    formatWordDeclension(parseInt(asteroid.close_approach_data[0].miss_distance.lunar), [
       'орбита',
       'орбиты',
       'орбит',
@@ -69,7 +55,7 @@ function Asteroid({asteroid, hideOrderBtn = false}: AsteroidProps) {
       <article className={styles.asteroid}>
         <Link className={styles.asteroidLink} href={`/${asteroid.id}`}>
           <p className={styles.asteroidDate}>
-            {format(new Date(closestApproach.close_approach_date), 'dd MMMM yyyy', {
+            {format(new Date(asteroid.close_approach_data[0].close_approach_date), 'dd MMMM yyyy', {
               locale: ru,
             })}
           </p>
@@ -77,8 +63,10 @@ function Asteroid({asteroid, hideOrderBtn = false}: AsteroidProps) {
         <div className={styles.asteroidInfo}>
           <p className={styles.asteroidDistance}>
             {units === 'kilometers'
-              ? `${formatDistance(closestApproach.miss_distance.kilometers)} км`
-              : `${formatDistance(closestApproach.miss_distance.lunar)} ${lunarDistanceLocale}`}
+              ? `${formatDistance(asteroid.close_approach_data[0].miss_distance.kilometers)} км`
+              : `${formatDistance(
+                  asteroid.close_approach_data[0].miss_distance.lunar
+                )} ${lunarDistanceLocale}`}
           </p>
           {asteroid.estimated_diameter.meters.estimated_diameter_max > SMALL_OR_BIG_LIMIT ? (
             <Image
