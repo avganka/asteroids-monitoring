@@ -6,10 +6,10 @@
   --white-base: hsl(0, 0%, 100%);
   --red-smooth: hsl(11, 58%, 91%);
   --gray-30: hsl(180, 4%, 89%);
+  --gray-100: hsl(0, 0%, 53%);
 
   --font-family: Helvetica, sans-serif;
   --disabled: hsl(0, 0%, 28%);
-  /*--header-height: 126px;*/
 }
 
 * {

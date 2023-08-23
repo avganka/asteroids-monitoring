@@ -20,8 +20,22 @@
 }
 
 .asteroidValue {
+  font-size: 20px;
   font-weight: 700;
-  margin-left: 10px;
-  text-align: right;
-  text-decoration: underline;
+  color: var(--white-base);
+}
+
+.asteroidFeature {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  grid-template-rows: 1fr 1fr;
+  column-gap: 20px;
+  font-size: 14px;
+  align-items: center;
+  color: var(--gray-100);
+}
+
+.asteroidIcon {
+  grid-row: span 2;
+  transform: scale(0.7);
 }
