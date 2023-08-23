@@ -53,13 +53,12 @@ function Asteroid({asteroid, hideOrderBtn = false}: AsteroidProps) {
   return (
     <li className={styles.asteroidsItem}>
       <article className={styles.asteroid}>
-        <Link className={styles.asteroidLink} href={`/${asteroid.id}`}>
-          <p className={styles.asteroidDate}>
-            {format(new Date(asteroid.close_approach_data[0].close_approach_date), 'dd MMMM yyyy', {
-              locale: ru,
-            })}
-          </p>
-        </Link>
+        <p className={styles.asteroidDate}>
+          {format(new Date(asteroid.close_approach_data[0].close_approach_date), 'dd MMMM yyyy', {
+            locale: ru,
+          })}
+        </p>
+
         <div className={styles.asteroidInfo}>
           <p className={styles.asteroidDistance}>
             {units === 'kilometers'
@@ -68,24 +67,27 @@ function Asteroid({asteroid, hideOrderBtn = false}: AsteroidProps) {
                   asteroid.close_approach_data[0].miss_distance.lunar
                 )} ${lunarDistanceLocale}`}
           </p>
-          {asteroid.estimated_diameter.meters.estimated_diameter_max > SMALL_OR_BIG_LIMIT ? (
-            <Image
-              className={styles.asteroidIcon}
-              src={bigAsteroid}
-              alt={'Большой астероид'}
-              aria-hidden={true}
-            />
-          ) : (
-            <Image
-              className={styles.asteroidIcon}
-              src={smallAsteroid}
-              alt={'Маленький астероид'}
-              aria-hidden={true}
-            />
-          )}
-
+          <Link className={styles.asteroidLink} href={`/${asteroid.id}`}>
+            {asteroid.estimated_diameter.meters.estimated_diameter_max > SMALL_OR_BIG_LIMIT ? (
+              <Image
+                className={styles.asteroidIcon}
+                src={bigAsteroid}
+                alt={'Большой астероид'}
+                aria-hidden={true}
+              />
+            ) : (
+              <Image
+                className={styles.asteroidIcon}
+                src={smallAsteroid}
+                alt={'Маленький астероид'}
+                aria-hidden={true}
+              />
+            )}
+          </Link>
           <div>
-            <h2 className={styles.asteroidName}>{formatAsteroidName(asteroid.name)}</h2>
+            <Link className={styles.asteroidLink} href={`/${asteroid.id}`}>
+              <h2 className={styles.asteroidName}>{formatAsteroidName(asteroid.name)}</h2>
+            </Link>
             <span>Ø {Math.round(asteroid.estimated_diameter.meters.estimated_diameter_max)} м</span>
           </div>
         </div>

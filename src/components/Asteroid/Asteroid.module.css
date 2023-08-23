@@ -1,22 +1,17 @@
 .asteroid {
 	padding: 5px;
 	border-radius: 10px;
-		transition: background-color 0.2s ease-in-out;
-}
-
-.asteroidLink {
-	cursor: pointer;
-	
-}
-
-.asteroidLink:hover{
-	color: var(--orange-base);
+	transition: background-color 0.2s ease-in-out;
 }
 
 .asteroid:hover {
 	background: radial-gradient(circle farthest-corner at left center,
 			#3a3a3a,
 			transparent);
+}
+
+.asteroidLink:hover {
+	color: var(--orange-base);
 }
 
 .asteroidDate {
@@ -53,7 +48,13 @@
 }
 
 .asteroidIcon {
+	cursor: pointer;
 	align-self: center;
+	transition: transform 0.2s ease-in-out;
+}
+
+.asteroidIcon:hover {
+	transform: scale(1.1);
 }
 
 .btns {
