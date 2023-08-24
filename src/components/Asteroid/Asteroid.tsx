@@ -14,6 +14,8 @@ import {DistanceContext} from '@/context/DistanceContext';
 import Link from 'next/link';
 import Button from '../Button/Button';
 
+import arrowIcon from '../../../public/arrow.svg';
+
 interface AsteroidProps {
   asteroid: NearEarthObject;
   hideOrderBtn?: boolean;
@@ -60,13 +62,16 @@ function Asteroid({asteroid, hideOrderBtn = false}: AsteroidProps) {
         </p>
 
         <div className={styles.asteroidInfo}>
-          <p className={styles.asteroidDistance}>
-            {units === 'kilometers'
-              ? `${formatDistance(asteroid.close_approach_data[0].miss_distance.kilometers)} км`
-              : `${formatDistance(
-                  asteroid.close_approach_data[0].miss_distance.lunar
-                )} ${lunarDistanceLocale}`}
-          </p>
+          <div className={styles.distance}>
+            <p className={styles.asteroidDistance}>
+              {units === 'kilometers'
+                ? `${formatDistance(asteroid.close_approach_data[0].miss_distance.kilometers)} км`
+                : `${formatDistance(
+                    asteroid.close_approach_data[0].miss_distance.lunar
+                  )} ${lunarDistanceLocale}`}
+            </p>
+            <Image src={arrowIcon} alt={'Стрелка'} className={styles.asteroidDistanceIcon} aria-hidden={'true'}/>
+          </div>
           <Link className={styles.asteroidLink} href={`/${asteroid.id}`}>
             {asteroid.estimated_diameter.meters.estimated_diameter_max > SMALL_OR_BIG_LIMIT ? (
               <Image

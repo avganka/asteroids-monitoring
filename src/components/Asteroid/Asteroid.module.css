@@ -29,14 +29,9 @@
 	margin-bottom: 8px;
 }
 
-.asteroidDistance::after {
-	content: '';
-	display: inline-block;
+.asteroidDistanceIcon {
 	width: 100%;
-	height: 6px;
-	background-image: url('../../../public/arrow.svg');
-	background-repeat: no-repeat;
-	background-size: contain;
+	object-fit: cover;
 }
 
 .asteroidName {
